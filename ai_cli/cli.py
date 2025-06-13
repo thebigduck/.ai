@@ -13,11 +13,26 @@ DEFAULT_DIRS = [
 
 SCHEMA = {
     "type": "object",
+    "required": ["projectName", "description", "primaryLanguage", "aiPreferences"],
     "properties": {
-        "project_name": {"type": "string"},
-        "description": {"type": "string"}
-    },
-    "required": ["project_name", "description"]
+        "projectName": {"type": "string", "minLength": 1},
+        "description": {"type": "string"},
+        "primaryLanguage": {"type": "string"},
+        "frameworks": {
+            "type": "array",
+            "items": {"type": "string"}
+        },
+        "license": {"type": "string"},
+        "aiPreferences": {
+            "type": "object",
+            "required": ["styleGuide", "testingFramework", "promptOnMissing"],
+            "properties": {
+                "styleGuide": {"type": "string"},
+                "testingFramework": {"type": "string"},
+                "promptOnMissing": {"type": "boolean"}
+            }
+        }
+    }
 }
 
 def ai_init(args):
@@ -28,8 +43,16 @@ def ai_init(args):
     config_path = os.path.join(base, '0-ai-config', 'ai-config.json')
     if not os.path.exists(config_path):
         with open(config_path, 'w') as f:
-            json.dump({"project_name": os.path.basename(os.getcwd()),
-                       "description": ""}, f, indent=2)
+            json.dump({
+                "projectName": os.path.basename(os.getcwd()),
+                "description": "",
+                "primaryLanguage": "",
+                "aiPreferences": {
+                    "styleGuide": "",
+                    "testingFramework": "",
+                    "promptOnMissing": False
+                }
+            }, f, indent=2)
     context_path = os.path.join(base, '1-context', 'project_context.md')
     if not os.path.exists(context_path):
         with open(context_path, 'w') as f:
@@ -53,7 +76,16 @@ def ai_migrate(args):
     base = os.path.join(os.getcwd(), '.ai')
     for d in DEFAULT_DIRS:
         os.makedirs(os.path.join(base, d), exist_ok=True)
-    config = {'project_name': name, 'description': desc}
+    config = {
+        'projectName': name,
+        'description': desc,
+        'primaryLanguage': '',
+        'aiPreferences': {
+            'styleGuide': '',
+            'testingFramework': '',
+            'promptOnMissing': False
+        }
+    }
     with open(os.path.join(base, '0-ai-config', 'ai-config.json'), 'w') as f:
         json.dump(config, f, indent=2)
     with open(os.path.join(base, '1-context', 'project_context.md'), 'w') as f:
@@ -62,12 +94,35 @@ def ai_migrate(args):
 
 
 def _validate_schema(data, schema):
-    # minimal json schema validation
-    if schema['type'] != 'object' or not isinstance(data, dict):
-        return False
-    for key in schema.get('required', []):
-        if key not in data:
+    """Very small subset of JSON schema validation used for tests."""
+    if schema["type"] == "object":
+        if not isinstance(data, dict):
             return False
+        for key in schema.get("required", []):
+            if key not in data:
+                return False
+        for key, subschema in schema.get("properties", {}).items():
+            if key in data:
+                if not _validate_schema(data[key], subschema):
+                    return False
+        return True
+    if schema["type"] == "array":
+        if not isinstance(data, list):
+            return False
+        item_schema = schema.get("items")
+        if item_schema:
+            for item in data:
+                if not _validate_schema(item, item_schema):
+                    return False
+        return True
+    if schema["type"] == "string":
+        if not isinstance(data, str):
+            return False
+        if "minLength" in schema and len(data) < schema["minLength"]:
+            return False
+        return True
+    if schema["type"] == "boolean":
+        return isinstance(data, bool)
     return True
 
 def ai_validate(args):
