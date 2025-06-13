@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "title": "AI Config",
+  "type": "object",
+  "required": ["projectName", "description", "primaryLanguage", "aiPreferences"],
+  "properties": {
+    "projectName": "Sample Project",
+    "description": "A short placeholder description of the project.",
+    "primaryLanguage": "en",
+    "frameworks": [],
+    "license": "UNLICENSED",
+    "aiPreferences": {
+      "styleGuide": "default",
+      "testingFramework": "none",
+      "promptOnMissing": true
+    }
+  }
+}
