@@ -30,28 +30,28 @@ The AI Directory Standard (ADS) defines a language-agnostic folder—/.ai/—tha
 
 The specification covers:
 
-Structure: Required sub-directories & files.
+- Structure: Required sub-directories & files.
 
-Content: Minimal & recommended metadata for effective AI operation.
+- Content: Minimal & recommended metadata for effective AI operation.
 
-Workflows: How humans and AI agents collaborate to populate, validate, and evolve the directory.
+- Workflows: How humans and AI agents collaborate to populate, validate, and evolve the directory.
 
-Interoperability: Alignment with existing configuration files (e.g., Copilot, Cursor) and emerging standards (Model Context Protocol — MCP).
+- Interoperability: Alignment with existing configuration files (e.g., Copilot, Cursor) and emerging standards (Model Context Protocol — MCP).
 
 
 ## Design Goals & Principles {#design-goals--principles}
 
-Comprehensive Context — Aggregate why, what, and how in one place.
+- Comprehensive Context — Aggregate why, what, and how in one place.
 
-Machine-Readable First — Key metadata expressed as JSON or YAML; narrative docs in Markdown.
+- Machine-Readable First — Key metadata expressed as JSON or YAML; narrative docs in Markdown.
 
-Assistant-Prompted Completeness — AI agents must prompt users to fill missing info or apply defaults.
+- Assistant-Prompted Completeness — AI agents must prompt users to fill missing info or apply defaults.
 
-Language & Tool Agnostic — No binding to specific stacks; adapters generate tool-specific configs.
+- Language & Tool Agnostic — No binding to specific stacks; adapters generate tool-specific configs.
 
-Self-Validation & Auditability — Acceptance criteria and compliance logs reside in-repo for automated checks.
+- Self-Validation & Auditability — Acceptance criteria and compliance logs reside in-repo for automated checks.
 
-Non-Redundant — Leverage, not duplicate, existing standards; .ai is a unifying wrapper.
+- Non-Redundant — Leverage, not duplicate, existing standards; .ai is a unifying wrapper.
 
 
 ## Directory Structure Overview {#directory-structure-overview}
