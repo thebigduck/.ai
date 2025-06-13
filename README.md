@@ -352,3 +352,16 @@ Options:
 | --------------- | ------------------------------------------------------------------------------------------------------------ |
 | --level <level> | Sets the reporting level. error (default): fails on any validation issue. warn: prints issues but always exits successfully. |
 | --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files.                  |
+
+## CLI Usage
+
+This repository includes a minimal CLI with three commands to manage the `.ai` directory:
+
+```bash
+python -m ai_cli ai-init       # scaffold the directory structure
+python -m ai_cli ai-migrate    # generate ai-config.json and project_context.md from README.md
+python -m ai_cli ai-validate   # validate the `.ai` directory
+```
+
+Run `python -m ai_cli -h` to see all options.
+Run `pytest` to execute the unit tests.
