@@ -442,7 +442,6 @@ ai-migrate --from readme,license --interactive
 # Validate the directory
 ai-validate --level warn
 ```
-=======
 
 ## CLI Usage
 
