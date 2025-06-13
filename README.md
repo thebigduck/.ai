@@ -39,6 +39,7 @@ Appendix A: ai-config.json Schema
 Appendix B: Glossary
 
 Appendix C: CLI Command Reference
+CLI Installation
 
 1 · Purpose & Scope
 The AI Directory Standard (ADS) defines a language-agnostic folder—/.ai/—that acts as the canonical, machine- and human-readable source of truth for all artificial-intelligence assistants interacting with a software repository.
@@ -352,3 +353,24 @@ Options:
 | --------------- | ------------------------------------------------------------------------------------------------------------ |
 | --level <level> | Sets the reporting level. error (default): fails on any validation issue. warn: prints issues but always exits successfully. |
 | --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files.                  |
+
+CLI Installation
+The CLI tools can be installed from source using `pip`:
+
+```
+pip install .
+```
+
+This exposes three commands: `ai-init`, `ai-migrate`, and `ai-validate`.
+
+Example Usage
+```
+# Initialize a new .ai directory
+ai-init -y
+
+# Migrate existing project metadata
+ai-migrate --from readme,license --interactive
+
+# Validate the directory
+ai-validate --level warn
+```
