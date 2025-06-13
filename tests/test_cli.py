@@ -13,7 +13,15 @@ def test_ai_init_creates_dirs():
         try:
             cli.ai_init(None)
             base = os.path.join(tmp, '.ai')
-            for d in cli.DEFAULT_DIRS:
+            expected = [
+                '0-ai-config',
+                '1-context',
+                '2-technical-design',
+                '3-development',
+                '4-acceptance',
+            ]
+            assert cli.DEFAULT_DIRS == expected
+            for d in expected:
                 assert os.path.isdir(os.path.join(base, d))
         finally:
             os.chdir(cwd)
