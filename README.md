@@ -3,44 +3,27 @@
 AI Directory Standard (/.ai) – Specification v0.1‑draft
 Status: Draft – open for public feedback. Submit issues or pull requests to the ADS working group repository.
 
-Table of Contents
-Purpose & Scope
+## Table of Contents
+- [Purpose & Scope](#purpose--scope)
+- [Design Goals & Principles](#design-goals--principles)
+- [Directory Structure Overview](#directory-structure-overview)
+- [File Specifications](#file-specifications)
+  - [0-ai-config/](#0-ai-config)
+  - [1-context/](#1-context)
+  - [2-technical-design/](#2-technical-design)
+  - [3-development/](#3-development)
+  - [4-acceptance/](#4-acceptance)
+- [JSON Schemas](#json-schemas)
+- [Lifecycle Workflows](#lifecycle-workflows)
+- [Interoperability & Compatibility](#interoperability--compatibility)
+- [Adoption & Migration Guide](#adoption--migration-guide)
+- [Best Practices & Anti-Patterns](#best-practices--anti-patterns)
+- [Appendices](#appendices)
+  - [Appendix A: ai-config.json Schema](#appendix-a-ai-configjson-schema)
+  - [Appendix B: Glossary](#appendix-b-glossary)
+  - [Appendix C: CLI Command Reference](#appendix-c-cli-command-reference)
 
-Design Goals & Principles
-
-Directory Structure Overview
-
-File Specifications
-
-4.1 0-ai-config/
-
-4.2 1-context/
-
-4.3 2-technical-design/
-
-4.4 3-development/
-
-4.5 4-acceptance/
-
-JSON Schemas
-
-Lifecycle Workflows
-
-Interoperability & Compatibility
-
-Adoption & Migration Guide
-
-Best Practices & Anti-Patterns
-
-Appendices
-
-Appendix A: ai-config.json Schema
-
-Appendix B: Glossary
-
-Appendix C: CLI Command Reference
-
-1 · Purpose & Scope
+## Purpose & Scope {#purpose--scope}
 The AI Directory Standard (ADS) defines a language-agnostic folder—/.ai/—that acts as the canonical, machine- and human-readable source of truth for all artificial-intelligence assistants interacting with a software repository.
 
 The specification covers:
@@ -53,7 +36,7 @@ Workflows: How humans and AI agents collaborate to populate, validate, and evolv
 
 Interoperability: Alignment with existing configuration files (e.g., Copilot, Cursor) and emerging standards (Model Context Protocol — MCP).
 
-2 · Design Goals & Principles
+## Design Goals & Principles {#design-goals--principles}
 Comprehensive Context — Aggregate why, what, and how in one place.
 
 Machine-Readable First — Key metadata expressed as JSON or YAML; narrative docs in Markdown.
@@ -66,7 +49,7 @@ Self-Validation & Auditability — Acceptance criteria and compliance logs resid
 
 Non-Redundant — Leverage, not duplicate, existing standards; .ai is a unifying wrapper.
 
-3 · Directory Structure Overview
+## Directory Structure Overview {#directory-structure-overview}
 .ai/
   ├── 0-ai-config/
   │   ├── ai-config.json
@@ -120,8 +103,8 @@ Recommended
 
 Populate as relevant to project complexity.
 
-4 · File Specifications
-4.1 0-ai-config/
+## File Specifications {#file-specifications}
+### 0-ai-config/ {#0-ai-config}
 File
 
 Format
@@ -161,7 +144,7 @@ ai-config.json – Required Keys
   }
 }
 
-4.2 1-context/
+### 1-context/ {#1-context}
 Narrative documentation to orient AI agents.
 
 project_context.md — Problem domain, goals, value proposition, target users.
@@ -172,7 +155,7 @@ target-personas/ — One Markdown file per persona (persona-alpha.md, persona-be
 
 standards/ — Links or embedded content for external policies (PCI-DSS, OWASP, etc.).
 
-4.3 2-technical-design/
+### 2-technical-design/ {#2-technical-design}
 Design-centric artifacts.
 
 Item
@@ -191,7 +174,7 @@ features/
 
 Each feature gets its own spec folder with specification.md, acceptance tests, etc.
 
-4.4 3-development/
+### 3-development/ {#3-development}
 File
 
 Purpose
@@ -204,7 +187,7 @@ tasklog/
 
 Timestamped records of AI ↔ human chats; helps continuity.
 
-4.5 4-acceptance/
+### 4-acceptance/ {#4-acceptance}
 File
 
 Purpose
@@ -217,10 +200,11 @@ compliance_reports/
 
 Auto-generated audit & test outcome artifacts.
 
-5 · JSON Schemas
-A full JSON Schema for ai-config.json is available in `ai-config.schema.json` (and reproduced in Appendix A). Validation tooling should reference this file when checking `.ai/0-ai-config/ai-config.json`.
+## JSON Schemas {#json-schemas}
+A full JSON Schema for ai-config.json is provided in Appendix A for validation tooling.
 
-6 · Lifecycle Workflows
+
+## Lifecycle Workflows {#lifecycle-workflows}
 For a detailed reference on the commands mentioned below, see Appendix C.
 
 Initialization – Run ai-init CLI: scaffolds .ai, stubs templates.
@@ -233,14 +217,14 @@ Validation – CI and/or AI agents verify code against 4-acceptance/ using ai-va
 
 Maintenance – On repo changes, AI proposes updates to context & design docs.
 
-7 · Interoperability & Compatibility
+## Interoperability & Compatibility {#interoperability--compatibility}
 Assistant Config Sync – Scripts convert core context → Copilot / Cursor / Windsurf rules.
 
 Model Context Protocol – Expose .ai via GitMCP endpoint; prioritise .ai over README.
 
 Repo-Sync Tools – Knowhub can sync org-wide .ai templates into new repos.
 
-8 · Adoption & Migration Guide
+## Adoption & Migration Guide {#adoption--migration-guide}
 For a detailed reference on the commands mentioned below, see Appendix C.
 
 Bootstrap existing repos with ai-migrate, auto-extracting info from README, package manifests.
@@ -249,15 +233,15 @@ Iterative Filling – Triage missing keys → prompt owners.
 
 CI Integration – Add ai-validate step to pipeline to ensure .ai completeness.
 
-9 · Best Practices & Anti-Patterns
+## Best Practices & Anti-Patterns {#best-practices--anti-patterns}
 Keep single source: don’t scatter AI rules outside .ai unless required by external tool paths (use symlinks).
 
 Avoid empty stubs lingering—configure prompts to surface missing context ASAP.
 
 Don’t store sensitive secrets in .ai; reference secure secret stores instead.
 
-10 · Appendices
-Appendix A — ai-config.json Schema (Draft)
+## Appendices {#appendices}
+### Appendix A — ai-config.json Schema (Draft) {#appendix-a-ai-configjson-schema}
 {
   "$schema": "http://json-schema.org/draft/2020-12/schema",
   "title": "AI Config",
@@ -284,7 +268,7 @@ Appendix A — ai-config.json Schema (Draft)
   }
 }
 
-Appendix B — Glossary
+### Appendix B — Glossary {#appendix-b-glossary}
 Term
 
 Definition
@@ -301,7 +285,7 @@ ADS
 
 AI Directory Standard (this document).
 
-Appendix C — CLI Command Reference
+### Appendix C — CLI Command Reference {#appendix-c-cli-command-reference}
 This section details the command-line interface (CLI) tools designed to support the AI Directory Standard.
 
 ai-init
