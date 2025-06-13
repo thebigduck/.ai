@@ -37,6 +37,7 @@ Status: Draft – open for public feedback. Submit issues or pull requests to th
 
   - Appendix A: ai-config.json Schema
 
+
   - Appendix B: Glossary
 
   - Appendix C: CLI Command Reference
@@ -420,6 +421,28 @@ Options:
 | --level <level> | Sets the reporting level. error (default): fails on any validation issue. warn: prints issues but always exits successfully. |
 | --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files.                  |
 
+
+CLI Installation
+The CLI tools can be installed from source using `pip`:
+
+```
+pip install .
+```
+
+This exposes three commands: `ai-init`, `ai-migrate`, and `ai-validate`.
+
+Example Usage
+```
+# Initialize a new .ai directory
+ai-init -y
+
+# Migrate existing project metadata
+ai-migrate --from readme,license --interactive
+
+# Validate the directory
+ai-validate --level warn
+```
+=======
 
 ## CLI Usage
 
