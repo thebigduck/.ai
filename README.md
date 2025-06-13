@@ -403,17 +403,6 @@ ai-migrate --from readme,license --interactive
 # Validate the directory
 ai-validate --level warn
 ```
-=======
-
-## CLI Usage
-
-This repository includes a minimal CLI with three commands to manage the `.ai` directory:
-
-```bash
-python -m ai_cli ai-init       # scaffold the directory structure
-python -m ai_cli ai-migrate    # generate ai-config.json and project_context.md from README.md
-python -m ai_cli ai-validate   # validate the `.ai` directory
-```
 
 Run `python -m ai_cli -h` to see all options.
 Run `pytest` to execute the unit tests.
