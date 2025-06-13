@@ -7,8 +7,8 @@ DEFAULT_DIRS = [
     '0-ai-config',
     '1-context',
     '2-technical-design',
-    '3-production-log',
-    '4-runs'
+    '3-development',
+    '4-acceptance'
 ]
 
 SCHEMA = {
