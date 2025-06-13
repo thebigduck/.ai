@@ -203,6 +203,7 @@ Auto-generated audit & test outcome artifacts.
 ## JSON Schemas {#json-schemas}
 A full JSON Schema for ai-config.json is provided in Appendix A for validation tooling.
 
+
 ## Lifecycle Workflows {#lifecycle-workflows}
 For a detailed reference on the commands mentioned below, see Appendix C.
 
@@ -318,11 +319,13 @@ Purpose: Checks the /.ai/ directory for completeness, correctness, and adherence
 
 Usage: ai-validate [options]
 
+ai-validate looks for `ai-config.schema.json` at the repository root and uses it to verify `.ai/0-ai-config/ai-config.json`. Other JSON Schema tools can load the same file for standalone checks.
+
 Behavior: Runs a series of checks and exits with a non-zero status code if errors are found.
 
 Checks Performed:
 
-Schema Validation: Ensures ai-config.json conforms to the JSON Schema in Appendix A.
+Schema Validation: Ensures ai-config.json conforms to `ai-config.schema.json` (also shown in Appendix A).
 
 File Existence: Verifies that all Required files from the standard are present.
 
@@ -335,3 +338,7 @@ Options:
 | --------------- | ------------------------------------------------------------------------------------------------------------ |
 | --level <level> | Sets the reporting level. error (default): fails on any validation issue. warn: prints issues but always exits successfully. |
 | --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files.                  |
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
