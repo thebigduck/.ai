@@ -33,7 +33,7 @@ def test_ai_migrate_and_validate():
             assert exit_code == 0
             with open(os.path.join('.ai', '0-ai-config', 'ai-config.json')) as f:
                 data = json.load(f)
-            assert data['project_name'] == 'Sample'
+            assert data['projectName'] == 'Sample'
         finally:
             os.chdir(cwd)
 
