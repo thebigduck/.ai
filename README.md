@@ -160,7 +160,7 @@ Narrative documentation to orient AI agents.
 
 project_context.md — Problem domain, goals, value proposition, target users.
 
-project_conventions.md — Coding style, branch strategy, commit message guidelines.
+project_conventions.md — Coding style, branch strategy, commit message guidelines, and linting reference.
 
 target-personas/ — One Markdown file per persona (persona-alpha.md, persona-beta.md).
 
@@ -232,7 +232,7 @@ Initialization – Run ai-init CLI: scaffolds .ai, stubs templates.
 
 Population – AI prompts user to fill blanks → writes values to JSON/Markdown.
 
-Development – AI references .ai for code generation, doc sync, linting rules.
+Development – AI references .ai for code generation and documentation sync. Linting rules are described in `1-context/project_conventions.md`.
 
 Validation – CI and/or AI agents verify code against 4-acceptance/ using ai-validate.
 
