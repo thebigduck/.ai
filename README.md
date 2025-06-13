@@ -3,44 +3,44 @@
 AI Directory Standard (/.ai) – Specification v0.1‑draft
 Status: Draft – open for public feedback. Submit issues or pull requests to the ADS working group repository.
 
-Table of Contents
-Purpose & Scope
+## Table of Contents
+- Purpose & Scope
 
-Design Goals & Principles
+- Design Goals & Principles
 
-Directory Structure Overview
+- Directory Structure Overview
 
-File Specifications
+- File Specifications
 
-4.1 0-ai-config/
+  - 0-ai-config/
 
-4.2 1-context/
+  - 1-context/
 
-4.3 2-technical-design/
+  - 2-technical-design/
 
-4.4 3-development/
+  - 3-development/
 
-4.5 4-acceptance/
+  - 4-acceptance/
 
-JSON Schemas
+- JSON Schemas
 
-Lifecycle Workflows
+- Lifecycle Workflows
 
-Interoperability & Compatibility
+- Interoperability & Compatibility
 
-Adoption & Migration Guide
+- Adoption & Migration Guide
 
-Best Practices & Anti-Patterns
+- Best Practices & Anti-Patterns
 
-Appendices
+- Appendices
 
-Appendix A: ai-config.json Schema
+  - Appendix A: ai-config.json Schema
 
-Appendix B: Glossary
+  - Appendix B: Glossary
 
-Appendix C: CLI Command Reference
+  - Appendix C: CLI Command Reference
 
-1 · Purpose & Scope
+## Purpose & Scope
 The AI Directory Standard (ADS) defines a language-agnostic folder—/.ai/—that acts as the canonical, machine- and human-readable source of truth for all artificial-intelligence assistants interacting with a software repository.
 
 The specification covers:
@@ -53,7 +53,7 @@ Workflows: How humans and AI agents collaborate to populate, validate, and evolv
 
 Interoperability: Alignment with existing configuration files (e.g., Copilot, Cursor) and emerging standards (Model Context Protocol — MCP).
 
-2 · Design Goals & Principles
+## Design Goals & Principles
 Comprehensive Context — Aggregate why, what, and how in one place.
 
 Machine-Readable First — Key metadata expressed as JSON or YAML; narrative docs in Markdown.
@@ -66,7 +66,7 @@ Self-Validation & Auditability — Acceptance criteria and compliance logs resid
 
 Non-Redundant — Leverage, not duplicate, existing standards; .ai is a unifying wrapper.
 
-3 · Directory Structure Overview
+## Directory Structure Overview
 .ai/
   ├── 0-ai-config/
   │   ├── ai-config.json
@@ -120,8 +120,8 @@ Recommended
 
 Populate as relevant to project complexity.
 
-4 · File Specifications
-4.1 0-ai-config/
+## File Specifications
+### 0-ai-config/
 File
 
 Format
@@ -147,7 +147,7 @@ Text/MD
 Generated or symlinked configs for specific assistants.
 
 ai-config.json – Required Keys
-
+```json
 {
   "projectName": "string",
   "description": "string",
@@ -160,8 +160,9 @@ ai-config.json – Required Keys
     "promptOnMissing": true             // Enforce prompts for missing context
   }
 }
+```
 
-4.2 1-context/
+### 1-context/
 Narrative documentation to orient AI agents.
 
 project_context.md — Problem domain, goals, value proposition, target users.
@@ -172,7 +173,7 @@ target-personas/ — One Markdown file per persona (persona-alpha.md, persona-be
 
 standards/ — Links or embedded content for external policies (PCI-DSS, OWASP, etc.).
 
-4.3 2-technical-design/
+### 2-technical-design/
 Design-centric artifacts.
 
 Item
@@ -191,7 +192,7 @@ features/
 
 Each feature gets its own spec folder with specification.md, acceptance tests, etc.
 
-4.4 3-development/
+### 3-development/
 File
 
 Purpose
@@ -204,7 +205,7 @@ tasklog/
 
 Timestamped records of AI ↔ human chats; helps continuity.
 
-4.5 4-acceptance/
+### 4-acceptance/
 File
 
 Purpose
@@ -217,10 +218,10 @@ compliance_reports/
 
 Auto-generated audit & test outcome artifacts.
 
-5 · JSON Schemas
+## JSON Schemas
 A full JSON Schema for ai-config.json is provided in Appendix A for validation tooling.
 
-6 · Lifecycle Workflows
+## Lifecycle Workflows
 For a detailed reference on the commands mentioned below, see Appendix C.
 
 Initialization – Run ai-init CLI: scaffolds .ai, stubs templates.
@@ -233,14 +234,14 @@ Validation – CI and/or AI agents verify code against 4-acceptance/ using ai-va
 
 Maintenance – On repo changes, AI proposes updates to context & design docs.
 
-7 · Interoperability & Compatibility
+## Interoperability & Compatibility
 Assistant Config Sync – Scripts convert core context → Copilot / Cursor / Windsurf rules.
 
 Model Context Protocol – Expose .ai via GitMCP endpoint; prioritise .ai over README.
 
 Repo-Sync Tools – Knowhub can sync org-wide .ai templates into new repos.
 
-8 · Adoption & Migration Guide
+## Adoption & Migration Guide
 For a detailed reference on the commands mentioned below, see Appendix C.
 
 Bootstrap existing repos with ai-migrate, auto-extracting info from README, package manifests.
@@ -249,15 +250,15 @@ Iterative Filling – Triage missing keys → prompt owners.
 
 CI Integration – Add ai-validate step to pipeline to ensure .ai completeness.
 
-9 · Best Practices & Anti-Patterns
+## Best Practices & Anti-Patterns
 Keep single source: don’t scatter AI rules outside .ai unless required by external tool paths (use symlinks).
 
 Avoid empty stubs lingering—configure prompts to surface missing context ASAP.
 
 Don’t store sensitive secrets in .ai; reference secure secret stores instead.
 
-10 · Appendices
-Appendix A — ai-config.json Schema (Draft)
+## Appendices
+### Appendix A — ai-config.json Schema (Draft)
 {
   "$schema": "http://json-schema.org/draft/2020-12/schema",
   "title": "AI Config",
@@ -284,7 +285,7 @@ Appendix A — ai-config.json Schema (Draft)
   }
 }
 
-Appendix B — Glossary
+### Appendix B — Glossary
 Term
 
 Definition
@@ -301,13 +302,16 @@ ADS
 
 AI Directory Standard (this document).
 
-Appendix C — CLI Command Reference
+### Appendix C — CLI Command Reference
 This section details the command-line interface (CLI) tools designed to support the AI Directory Standard.
 
-ai-init
+### ai-init
 Purpose: Scaffolds a new /.ai/ directory in a project.
 
-Usage: ai-init [options]
+Usage:
+```bash
+ai-init [options]
+```
 
 Behavior: Creates the standard ADS directory structure and populates files with default templates and placeholder content. It can run interactively to ask for key project details.
 
@@ -317,10 +321,13 @@ Options:
 | --template <name>| Initializes the directory using a predefined template (e.g., web-app, cli, data-science).                  |
 | -y, --yes      | Skips all interactive prompts and uses default values. Good for automated scripts.                            |
 
-ai-migrate
+### ai-migrate
 Purpose: Bootstraps a /.ai/ directory in an existing project by inferring context from source files.
 
-Usage: ai-migrate --from <sources> [options]
+Usage:
+```bash
+ai-migrate --from <sources> [options]
+```
 
 Behavior: Scans specified source files (e.g., package.json, README.md) to intelligently populate ai-config.json and project_context.md.
 
@@ -330,10 +337,13 @@ Options:
 | --from <list> | Required. A comma-separated list of sources to scan. E.g., readme,package.json,license. Supported sources: readme, license, package.json, pom.xml, pyproject.toml, go.mod. |
 | --interactive | Prompts the user to confirm each inferred value before writing it to the target file, allowing for corrections.                              |
 
-ai-validate
+### ai-validate
 Purpose: Checks the /.ai/ directory for completeness, correctness, and adherence to the standard. Designed for use in CI/CD pipelines.
 
-Usage: ai-validate [options]
+Usage:
+```bash
+ai-validate [options]
+```
 
 Behavior: Runs a series of checks and exits with a non-zero status code if errors are found.
 
