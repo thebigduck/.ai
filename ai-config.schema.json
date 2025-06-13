@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "title": "AI Config",
+  "type": "object",
+  "required": ["projectName", "description", "primaryLanguage", "aiPreferences"],
+  "properties": {
+    "projectName": { "type": "string", "minLength": 1 },
+    "description":  { "type": "string" },
+    "primaryLanguage": { "type": "string" },
+    "frameworks": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "license": { "type": "string" },
+    "aiPreferences": {
+      "type": "object",
+      "required": ["styleGuide", "testingFramework", "promptOnMissing"],
+      "properties": {
+        "styleGuide": { "type": "string" },
+        "testingFramework": { "type": "string" },
+        "promptOnMissing": { "type": "boolean" }
+      }
+    }
+  }
+}
