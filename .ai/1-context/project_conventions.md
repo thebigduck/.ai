@@ -1,6 +1,6 @@
 # Project Conventions
 
-<<<<<<< codex/create-project_conventions.md-and-update-readme
+
 This document captures how development happens in this repository.
 
 ## Coding Style
@@ -27,7 +27,7 @@ This document captures how development happens in this repository.
 - The recommended linter is **flake8**.
 - Configuration is stored in the repository root at `.flake8`.
 - Run `flake8` locally or in CI to enforce the style rules.
-=======
+
 This document defines coding standards and workflow conventions for this repository.
 
 ## Coding Style
@@ -41,4 +41,4 @@ Explain the expected commit message format, including prefixes or references.
 
 ## Linting
 Use `flake8` for Python linting. The configuration is located in `setup.cfg`.
->>>>>>> main
+
