@@ -352,3 +352,7 @@ Options:
 | --------------- | ------------------------------------------------------------------------------------------------------------ |
 | --level <level> | Sets the reporting level. error (default): fails on any validation issue. warn: prints issues but always exits successfully. |
 | --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files.                  |
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
