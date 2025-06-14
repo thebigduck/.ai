@@ -24,7 +24,7 @@ Status: Draft – open for public feedback. Submit issues or pull requests to th
   - [Appendix B: Glossary](#appendix-b-glossary)
   - [Appendix C: CLI Command Reference](#appendix-c-cli-command-reference)
 
-## Purpose & Scope {#purpose--scope}
+## Purpose & Scope
 
 The AI Directory Standard (ADS) defines a language-agnostic folder—/.ai/—that acts as the canonical, machine- and human-readable source of truth for all artificial-intelligence assistants interacting with a software repository.
 
@@ -39,7 +39,7 @@ The specification covers:
 - Interoperability: Alignment with existing configuration files (e.g., Copilot, Cursor) and emerging standards (Model Context Protocol — MCP).
 
 
-## Design Goals & Principles {#design-goals--principles}
+## Design Goals & Principles
 
 - Comprehensive Context — Aggregate why, what, and how in one place.
 
@@ -54,7 +54,7 @@ The specification covers:
 - Non-Redundant — Leverage, not duplicate, existing standards; .ai is a unifying wrapper.
 
 
-## Directory Structure Overview {#directory-structure-overview}
+## Directory Structure Overview
 
 .ai/
   ├── 0-ai-config/
@@ -87,8 +87,8 @@ Mandatory vs. Optional
 | All others | Recommended | Populate as relevant to project complexity. |
 
 
-## File Specifications {#file-specifications}
-### 0-ai-config/ {#0-ai-config}
+## File Specifications
+### 0-ai-config/
 
 | File | Format | Purpose |
 | ---- | ------ | ------- |
@@ -113,7 +113,7 @@ ai-config.json – Required Keys
 ```
 
 
-### 1-context/ {#1-context}
+### 1-context/
 
 Narrative documentation to orient AI agents.
 
@@ -125,7 +125,7 @@ Narrative documentation to orient AI agents.
 | standards/ | Links/Markdown | Links or embedded content for external policies (PCI-DSS, OWASP, etc.). |
 
 
-### 2-technical-design/ {#2-technical-design}
+### 2-technical-design/
 
 Design-centric artifacts.
 
@@ -137,7 +137,7 @@ Design-centric artifacts.
 
 
 
-### 3-development/ {#3-development}
+### 3-development/
 
 | File | Purpose |
 | ---- | ------- |
@@ -146,7 +146,7 @@ Design-centric artifacts.
 
 
 
-### 4-acceptance/ {#4-acceptance}
+### 4-acceptance/
 
 | File | Purpose |
 | ---- | ------- |
@@ -154,11 +154,11 @@ Design-centric artifacts.
 | compliance_reports/ | Auto-generated audit & test outcome artifacts. |
 
 
-## JSON Schemas {#json-schemas}
+## JSON Schemas
 A full JSON Schema for ai-config.json is provided in Appendix A for validation tooling.
 
 
-## Lifecycle Workflows {#lifecycle-workflows}
+## Lifecycle Workflows
 
 For a detailed reference on the commands mentioned below, see Appendix C.
 
@@ -176,7 +176,7 @@ Validation – CI and/or AI agents verify code against 4-acceptance/ using ai-va
 Maintenance – On repo changes, AI proposes updates to context & design docs.
 
 
-## Interoperability & Compatibility {#interoperability--compatibility}
+## Interoperability & Compatibility
 
 Assistant Config Sync – Scripts convert core context → Copilot / Cursor / Windsurf rules.
 
@@ -185,7 +185,7 @@ Model Context Protocol – Expose .ai via GitMCP endpoint; prioritise .ai over R
 Repo-Sync Tools – Knowhub can sync org-wide .ai templates into new repos.
 
 
-## Adoption & Migration Guide {#adoption--migration-guide}
+## Adoption & Migration Guide
 
 For a detailed reference on the commands mentioned below, see Appendix C.
 
@@ -196,7 +196,7 @@ Iterative Filling – Triage missing keys → prompt owners.
 CI Integration – Add ai-validate step to pipeline to ensure .ai completeness.
 
 
-## Best Practices & Anti-Patterns {#best-practices--anti-patterns}
+## Best Practices & Anti-Patterns
 
 Keep single source: don’t scatter AI rules outside .ai unless required by external tool paths (use symlinks).
 
@@ -206,8 +206,8 @@ Don’t store sensitive secrets in .ai; reference secure secret stores instead.
 
 
 
-## Appendices {#appendices}
-### Appendix A — ai-config.json Schema (Draft) {#appendix-a-ai-configjson-schema}
+## Appendices
+### Appendix A — ai-config.json Schema (Draft)
 
 {
   "$schema": "http://json-schema.org/draft/2020-12/schema",
@@ -236,7 +236,7 @@ Don’t store sensitive secrets in .ai; reference secure secret stores instead.
 }
 
 
-### Appendix B — Glossary {#appendix-b-glossary}
+### Appendix B — Glossary
 
 | Term | Definition |
 | ---- | ---------- |
@@ -245,7 +245,7 @@ Don’t store sensitive secrets in .ai; reference secure secret stores instead.
 | ADS | AI Directory Standard (this document). |
 
 
-### Appendix C — CLI Command Reference {#appendix-c-cli-command-reference}
+### Appendix C — CLI Command Reference
 
 This section details the command-line interface (CLI) tools designed to support the AI Directory Standard.
 
