@@ -387,6 +387,18 @@ Options:
 | --level <level> | Sets the reporting level. error (default): fails on any validation issue. warn: prints issues but always exits successfully. |
 | --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files.                  |
 
+### gitmcp
+Purpose: Serves the `.ai` directory over HTTP via a simple MCP endpoint.
+
+Usage:
+```bash
+gitmcp --port 8000
+```
+
+The server returns a JSON payload of the `.ai` directory when requesting
+`http://localhost:8000/context`. Tools can fetch this endpoint to retrieve
+structured project context following the Model Context Protocol.
+
 
 CLI Installation
 The CLI tools can be installed from source using `pip`:
@@ -395,7 +407,7 @@ The CLI tools can be installed from source using `pip`:
 pip install .
 ```
 
-This exposes three commands: `ai-init`, `ai-migrate`, and `ai-validate`.
+This exposes four commands: `ai-init`, `ai-migrate`, `ai-validate`, and `gitmcp`.
 
 Example Usage
 ```
@@ -407,6 +419,9 @@ ai-migrate --from readme,license --interactive
 
 # Validate the directory
 ai-validate --level warn
+
+# Serve .ai over MCP
+gitmcp --port 8000
 ```
 
 Run `python -m ai_cli -h` to see all options.
