@@ -79,63 +79,22 @@ The specification covers:
 
 Mandatory vs. Optional
 
-Path
-
-Status
-
-Description
-
-.ai/0-ai-config/ai-config.json
-
-Required
-
-Core project + AI settings.
-
-.ai/1-context/project_context.md
-
-Required
-
-High-level scope & goals.
-
-.ai/4-acceptance/acceptance_criteria.md
-
-Required
-
-Definition of Done checklist.
-
-All others
-
-Recommended
-
-Populate as relevant to project complexity.
+| Path | Status | Description |
+| ---- | ------ | ----------- |
+| .ai/0-ai-config/ai-config.json | Required | Core project + AI settings. |
+| .ai/1-context/project_context.md | Required | High-level scope & goals. |
+| .ai/4-acceptance/acceptance_criteria.md | Required | Definition of Done checklist. |
+| All others | Recommended | Populate as relevant to project complexity. |
 
 
 ## File Specifications {#file-specifications}
 ### 0-ai-config/ {#0-ai-config}
 
-File
-
-Format
-
-Purpose
-
-ai-config.json
-
-JSON
-
-Machine-readable project metadata & global AI behaviour flags.
-
-workflow.md
-
-Markdown
-
-Human-readable description of AI↔human collaboration workflow.
-
-Tool rule files (e.g. .cursorrules)
-
-Text/MD
-
-Generated or symlinked configs for specific assistants.
+| File | Format | Purpose |
+| ---- | ------ | ------- |
+| ai-config.json | JSON | Machine-readable project metadata & global AI behaviour flags. |
+| workflow.md | Markdown | Human-readable description of AI↔human collaboration workflow. |
+| Tool rule files (e.g. .cursorrules) | Text/MD | Generated or symlinked configs for specific assistants. |
 
 ai-config.json – Required Keys
 ```json
@@ -158,68 +117,41 @@ ai-config.json – Required Keys
 
 Narrative documentation to orient AI agents.
 
-project_context.md — Problem domain, goals, value proposition, target users.
-
-
-project_conventions.md — Coding style, branch strategy, commit message guidelines and linting recommendations.
-
-
-target-personas/ — One Markdown file per persona (persona-alpha.md, persona-beta.md).
-
-standards/ — Links or embedded content for external policies (PCI-DSS, OWASP, etc.).
+| File | Format | Purpose |
+| ---- | ------ | ------- |
+| project_context.md | Markdown | Problem domain, goals, value proposition, target users. |
+| project_conventions.md | Markdown | Coding style, branch strategy, commit message guidelines and linting recommendations. |
+| target-personas/ | Markdown files | One Markdown file per persona (persona-alpha.md, persona-beta.md). |
+| standards/ | Links/Markdown | Links or embedded content for external policies (PCI-DSS, OWASP, etc.). |
 
 
 ### 2-technical-design/ {#2-technical-design}
 
 Design-centric artifacts.
 
-Item
-
-Purpose
-
-architecture.md
-
-Diagrams / Mermaid markup of high-level system.
-
-requirements/
-
-Sub-folders for domain requirements (e.g. security/ssl.md).
-
-features/
-
-Each feature gets its own spec folder with specification.md, acceptance tests, etc.
+| Item | Purpose |
+| ---- | ------- |
+| architecture.md | Diagrams / Mermaid markup of high-level system. |
+| requirements/ | Sub-folders for domain requirements (e.g. security/ssl.md). |
+| features/ | Each feature gets its own spec folder with specification.md, acceptance tests, etc. |
 
 
 
 ### 3-development/ {#3-development}
 
-File
-
-Purpose
-
-folder-locks.md
-
-Declare areas AI must not auto-modify without human approval.
-
-tasklog/
-
-Timestamped records of AI ↔ human chats; helps continuity.
+| File | Purpose |
+| ---- | ------- |
+| folder-locks.md | Declare areas AI must not auto-modify without human approval. |
+| tasklog/ | Timestamped records of AI ↔ human chats; helps continuity. |
 
 
 
 ### 4-acceptance/ {#4-acceptance}
 
-File
-
-Purpose
-
-acceptance_criteria.md
-
-Global Definition of Done checklist.
-
-compliance_reports/
-
-Auto-generated audit & test outcome artifacts.
+| File | Purpose |
+| ---- | ------- |
+| acceptance_criteria.md | Global Definition of Done checklist. |
+| compliance_reports/ | Auto-generated audit & test outcome artifacts. |
 
 
 ## JSON Schemas {#json-schemas}
@@ -306,21 +238,11 @@ Don’t store sensitive secrets in .ai; reference secure secret stores instead.
 
 ### Appendix B — Glossary {#appendix-b-glossary}
 
-Term
-
-Definition
-
-MCP
-
-Model Context Protocol – specification for real-time retrieval of external context by AI models.
-
-Knowhub
-
-OSS tool for propagating shared config & rules across multiple repos.
-
-ADS
-
-AI Directory Standard (this document).
+| Term | Definition |
+| ---- | ---------- |
+| MCP | Model Context Protocol – specification for real-time retrieval of external context by AI models. |
+| Knowhub | OSS tool for propagating shared config & rules across multiple repos. |
+| ADS | AI Directory Standard (this document). |
 
 
 ### Appendix C — CLI Command Reference {#appendix-c-cli-command-reference}
@@ -338,10 +260,11 @@ ai-init [options]
 Behavior: Creates the standard ADS directory structure and populates files with default templates and placeholder content. It can run interactively to ask for key project details.
 
 Options:
-| Flag               | Description                                                                                                   |
-| ------------------ | ------------------------------------------------------------------------------------------------------------- |
-| --template <name>| Initializes the directory using a predefined template (e.g., web-app, cli, data-science).                  |
-| -y, --yes      | Skips all interactive prompts and uses default values. Good for automated scripts.                            |
+
+| Flag | Description |
+| ---- | ----------- |
+| --template <name> | Initializes the directory using a predefined template (e.g., web-app, cli, data-science). |
+| -y, --yes | Skips all interactive prompts and uses default values. Good for automated scripts. |
 
 ### ai-migrate
 Purpose: Bootstraps a /.ai/ directory in an existing project by inferring context from source files.
@@ -354,10 +277,11 @@ ai-migrate --from <sources> [options]
 Behavior: Scans specified source files (e.g., package.json, README.md) to intelligently populate ai-config.json and project_context.md.
 
 Options:
-| Flag            | Description                                                                                                                                |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+
+| Flag | Description |
+| ---- | ----------- |
 | --from <list> | Required. A comma-separated list of sources to scan. E.g., readme,package.json,license. Supported sources: readme, license, package.json, pom.xml, pyproject.toml, go.mod. |
-| --interactive | Prompts the user to confirm each inferred value before writing it to the target file, allowing for corrections.                              |
+| --interactive | Prompts the user to confirm each inferred value before writing it to the target file, allowing for corrections. |
 
 ### ai-validate
 Purpose: Checks the /.ai/ directory for completeness, correctness, and adherence to the standard. Designed for use in CI/CD pipelines.
@@ -382,10 +306,11 @@ Content Completeness: (Optional) Scans files for common placeholder text (e.g., 
 Link Validation: (Optional) Checks that HTTP(S) links in Markdown files are not broken.
 
 Options:
-| Flag            | Description                                                                                                  |
-| --------------- | ------------------------------------------------------------------------------------------------------------ |
+
+| Flag | Description |
+| ---- | ----------- |
 | --level <level> | Sets the reporting level. error (default): fails on any validation issue. warn: prints issues but always exits successfully. |
-| --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files.                  |
+| --check-links | Enables the optional (and potentially slow) validation of external links in Markdown files. |
 
 ### gitmcp
 Purpose: Serves the `.ai` directory over HTTP via a simple MCP endpoint.
