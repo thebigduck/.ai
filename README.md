@@ -56,6 +56,7 @@ The specification covers:
 
 ## Directory Structure Overview
 
+```text
 .ai/
   ├── 0-ai-config/
   │   ├── ai-config.json
@@ -76,6 +77,7 @@ The specification covers:
   └── 4-acceptance/
       ├── acceptance_criteria.md
       └── compliance_reports/
+```
 
 Mandatory vs. Optional
 
