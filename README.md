@@ -209,6 +209,7 @@ Don’t store sensitive secrets in .ai; reference secure secret stores instead.
 ## Appendices
 ### Appendix A — ai-config.json Schema (Draft)
 
+```json
 {
   "$schema": "http://json-schema.org/draft/2020-12/schema",
   "title": "AI Config",
@@ -234,6 +235,7 @@ Don’t store sensitive secrets in .ai; reference secure secret stores instead.
     }
   }
 }
+```
 
 
 ### Appendix B — Glossary
