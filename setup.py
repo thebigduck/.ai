@@ -9,6 +9,7 @@ setup(
             'ai-init=ai_cli.init_cmd:main',
             'ai-migrate=ai_cli.migrate_cmd:main',
             'ai-validate=ai_cli.validate_cmd:main',
+            'gitmcp=ai_cli.gitmcp_cmd:main',
         ],
     },
 )
